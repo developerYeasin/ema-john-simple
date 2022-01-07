@@ -1,9 +1,13 @@
 import React from 'react';
 
+
 const Cart = (props) => {
     const cart = props.cart;
     let total = 0;
-    cart.forEach(product => total = (total + product.price));
+    cart.forEach(product => {
+        total = (total + product.price * parseInt(product.quantity) );
+    });
+    
 
     let shipping = 0;
     if(total > 30){
@@ -23,7 +27,10 @@ const Cart = (props) => {
                <p>Shipping cost: {shipping}</p>
                <p>Tax + vat: {tax.toFixed(2)}</p>
                <h3>Total price: {grandTotal.toFixed(2)}</h3>
-        </div>
+               {
+                   props.children
+               }
+        </div> 
     );
 };
 
